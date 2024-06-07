@@ -8,7 +8,7 @@ from cache import scan_cache as storage
 
 
 # Host to check
-drift.Host = "8.8.8.8"
+drift.Host = "93.170.25.52"
 
 # Запуск процесса поллинга новых апдейтов
 async def main():

@@ -2,6 +2,7 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardRemove
 from keyboards.for_questions import make_choice_kb
+# from data import statistic
 
 router = Router()  # [1]
 
