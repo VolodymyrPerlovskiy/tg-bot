@@ -1,10 +1,12 @@
-from datetime import datetime, timezone 
+from datetime import datetime, timezone, timedelta
 import threading, time, subprocess, platform
-import redis
+from redis_dict import RedisDict
 
 Host = ""
 next_call = time.time()
-rs = redis.StrictRedis(host="127.0.0.1", port="6379", password="", db=0)
+
+dict = RedisDict(host="127.0.0.1", port="6379", password="", db=0, expire=timedelta(minutes=10080))
+
 
 def ping_ok(sHost) -> bool:
     try:
@@ -27,7 +29,7 @@ def write_2_cache():
     aware_local_now = datetime.now(timezone.utc).astimezone().strftime("%m/%d/%Y-%H:%M:%S")
     current_state = ping_ok(Host) 
     next_call = next_call+3600
-    rs.set(str(aware_local_now), str(current_state), ex=604800)
+    dict[str(aware_local_now)] = str(current_state) #, ex=604800
     threading.Timer( next_call - time.time(), write_2_cache).start()
 
 

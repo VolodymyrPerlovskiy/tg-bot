@@ -1,48 +1,21 @@
-import redis
 from health_check import drift
-import itertools
+from collections import OrderedDict
+from datetime import datetime
 
-redis_conn = ["127.0.0.1","6379", "", 0]
-rs = redis.StrictRedis(host="127.0.0.1", port="6379", password="", db=0)
+def slice_odict(odict, start=None, end=None):
+    return OrderedDict([
+        (k,v) for (k,v) in odict.items() 
+        if k in list(odict.keys())[start:end]
+    ])
 
-def scan_cache(rs):
-    # Get all keys
-    dict = {}
-    cache = drift.rs
-    keys = cache.keys()
-    # Get all values associated with the keys
-    for key in keys:
-        dict[key] = cache.get(key)
-
-        #print('Key:', key)
-        #print('Value:', cache.get(key))
-        #value = cache.get(key)
-        #dict = { key, value }
-    return dict
-
-def arrange_dict(dictonary: dict):
+def arrange_dict(rdict = drift.dict):
     
-    limited_dict = dict(itertools.islice(dictonary.items(), 24))
+    for key in rdict:
+        print("key:", key, "Value:", rdict[key])
 
-    for key, value in limited_dict.items():
-        print(f"{key}: {value}")
+    sorted_dict = OrderedDict(sorted(rdict.items(), key=lambda x: x[0]))
 
-    return limited_dict
-
-dict_cashe = scan_cache(rs)
-arrange_dict(dict_cashe)
-
-
-class SliceableDict(dict):
-    def slice(self, *keys):
-        return {k: self[k] for k in keys}
-        # or one of the others from the first example
-
-d = SliceableDict({1:2, 3:4, 5:6, 7:8})
-d.slice(1, 5)     # {1: 2, 5: 6}
-keys = 1, 5
-d.slice(*keys)    # same
-#True1 True2 False1 True True True True5
+    return sorted_dict
 
 # Если сравниваемые елементы равны и не равны треьему - Добавляем в лист третій єлемент
 # Если два сравниваемых елемента не равны - добавляем в лыст
