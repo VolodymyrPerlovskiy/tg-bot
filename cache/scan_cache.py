@@ -1,6 +1,7 @@
 from health_check import drift
 from collections import OrderedDict
 from datetime import datetime
+from itertools import islice
 
 def slice_odict(odict, start=None, end=None):
     return OrderedDict([
@@ -14,9 +15,10 @@ def arrange_dict(rdict = drift.dict):
         print("key:", key, "Value:", rdict[key])
 
     sorted_dict = OrderedDict(sorted(rdict.items(), key=lambda x: x[0]))
+    sliced = islice(sorted_dict.items(),24)
+    sliced_odic = OrderedDict(sliced)
 
-    return sorted_dict
-
+    return sliced_odic
 # Если сравниваемые елементы равны и не равны треьему - Добавляем в лист третій єлемент
 # Если два сравниваемых елемента не равны - добавляем в лыст
 # Если два сравнивамых елемента равны и равны третьему - заменяем второй элемент на третий
