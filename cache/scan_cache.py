@@ -15,10 +15,8 @@ def arrange_dict(rdict = drift.dict):
         print("key:", key, "Value:", rdict[key])
 
     sorted_dict = OrderedDict(sorted(rdict.items(), key=lambda x: x[0]))
-    sliced = islice(sorted_dict.items(),24)
-    sliced_odic = OrderedDict(sliced)
-
-    return sliced_odic
+    
+    return sorted_dict
 # Если сравниваемые елементы равны и не равны треьему - Добавляем в лист третій єлемент
 # Если два сравниваемых елемента не равны - добавляем в лыст
 # Если два сравнивамых елемента равны и равны третьему - заменяем второй элемент на третий
