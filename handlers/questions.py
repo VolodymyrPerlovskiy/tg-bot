@@ -41,7 +41,7 @@ async def answer_check_electrisity(message: Message):
 
 @router.message(F.text.lower() == "отримати статистику за день")
 async def answer_get_statistic(message: Message):
-    appropriate_mark = statistic.set_marks()
+    appropriate_mark = statistic.set_icons()
     dict = scan_cache.arrange_dict()
 
     for key, value in dict.items():
