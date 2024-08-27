@@ -33,7 +33,7 @@ async def cmd_start(message: Message):
 @router.message(F.text.lower() == "перевірити наявність єлектрики в лбц")
 async def answer_check_electrisity(message: Message):
     current_datetime = tuple(drift.current_status())
-    appropriate_mark = statistic.set_marks()
+    appropriate_mark = statistic..set_icons()
     await message.answer(
         f"{current_datetime[0]} {appropriate_mark}",       
         reply_markup=make_choice_kb()
@@ -41,7 +41,7 @@ async def answer_check_electrisity(message: Message):
 
 @router.message(F.text.lower() == "отримати статистику за день")
 async def answer_get_statistic(message: Message):
-    appropriate_mark = statistic.set_marks()
+    appropriate_mark = statistic.set_icons()
     dict = scan_cache.arrange_dict()
 
     for key, value in dict.items():

@@ -11,9 +11,9 @@ def set_marks():
 
 def set_icons():
     content = tuple(drift.current_status())
-    if len(content) != 0 and content[1] == 'True':
+    if len(content) != 0 and content[1] == "True":
         icon="✅"
-    if len(content) !=0 and content[1] == 'False':
+    if len(content) !=0 and content[1] == "False":
         icon="❌"
     
     return icon
