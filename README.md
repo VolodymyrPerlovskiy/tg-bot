@@ -16,7 +16,6 @@ virtualenv venv --distribute
 
 sudo timedatectl set-timezone Europe/Kyiv
 
-
   152  cd tgbot/
   153  screen -ls
   154  screen -r 31627.bot
