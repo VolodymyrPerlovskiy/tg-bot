@@ -8,7 +8,7 @@ from cache import scan_cache as storage
 from handlers import questions
 
 # Host to check
-drift.Host = "93.170.25.218"
+drift.Host = "46.200.21.49"
 
 
 # Запуск процесса поллинга новых апдейтов
