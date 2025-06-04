@@ -18,7 +18,7 @@ async def main():
     logging.basicConfig(level=logging.DEBUG)
     # Диспетчер
     # Объект бота
-    bot = Bot(token="7870517063:AAFToPeyyoQdaqZgxSCFTgsqncqL7iGJtjE")
+    bot = Bot(token=os.getenv('TG_BOT_TOKEN'))
     dp = Dispatcher()
     dp.include_routers(questions.router)
     drift.write_2_cache()
